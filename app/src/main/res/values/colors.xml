@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ligtcement">#AAAAAA</color>
+    <color name="lightpurple">#924DBF</color>
+    <color name="purple1">#7238A0</color>
+    <color name="darkblue1">#100429</color>
+    <color name="lightgray">#8F8F8F</color>
+    <color name="darkblue2">#0C041F</color>
+    <color name="darkblue3">#150429</color>
+    <color name="darkblue2_darker">#090318</color>
+    <color name="darkblue2_lighter">#211933</color>
+    <color name="transparent">#00FFFFFF</color>
+
+    <color name="brightblue">#A4F5FA</color>
+    <color name="brightpurple">#DA4EEF</color>
+
+    <color name="purple_700">#6200EA</color>
+    <color name="purple_900">#3700B3</color>
+    <color name="purple_500">#BB86FC</color>
+    <color name="purple_background">#2f013f</color>
+
+    <color name="purple_background_darker">#22002D</color>
+</resources>

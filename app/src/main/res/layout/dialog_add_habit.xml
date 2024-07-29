@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+<!--        android:background="@color/purple_background">-->
+
+        <EditText
+            android:id="@+id/habit_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Habit Name"
+            android:inputType="text"/>
+<!--            android:textColorHint="@color/ligtcement"/>-->
+
+
+        <Spinner
+            android:id="@+id/habit_category_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:spinnerMode="dropdown" />
+
+
+    </LinearLayout>
+</layout>
