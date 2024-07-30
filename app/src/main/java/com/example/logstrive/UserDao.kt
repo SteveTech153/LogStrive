@@ -11,4 +11,7 @@ interface UserDao {
 
     @Query("SELECT * FROM user WHERE username = :username")
     suspend fun getUserByUsername(username: String): User
+
+    @Query("SELECT * FROM user")
+    fun getAllUsers(): List<User>
 }

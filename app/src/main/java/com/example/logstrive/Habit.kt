@@ -29,4 +29,8 @@ data class Habit(
     @ColumnInfo(name = "user_id") val userId: Int,
     @ColumnInfo(name = "category_id") val categoryId: Int,
     @ColumnInfo(name = "habit_name") val habitName: String
-)
+){
+    override fun toString(): String {
+        return this.habitName
+    }
+}

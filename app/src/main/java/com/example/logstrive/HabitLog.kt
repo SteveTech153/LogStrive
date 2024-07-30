@@ -6,7 +6,6 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.util.Date
-
 @Entity(
     tableName = "habit_log",
     indices = [Index(value = ["user_id", "habit_id", "date"], unique = true)],
@@ -29,7 +28,6 @@ data class HabitLog(
     @PrimaryKey(autoGenerate = true) val habitLogId: Int = 0,
     @ColumnInfo(name = "user_id") val userId: Int,
     @ColumnInfo(name = "habit_id") val habitId: Int,
-    @ColumnInfo(name = "date") val date: Date,
+    @ColumnInfo(name = "date") val date: Long,
     @ColumnInfo(name = "duration") val duration: Int
 )
-

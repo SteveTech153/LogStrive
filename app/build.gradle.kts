@@ -48,7 +48,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("com.google.android.material:material:1.12.0")
-    implementation("androidx.activity:activity-ktx:1.9.0")
+    implementation("androidx.activity:activity-ktx:1.9.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.room:room-runtime:2.6.1")
@@ -58,6 +58,7 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.adapter.guava)
     implementation(libs.converter.gson)
+    implementation(libs.kotlinx.coroutines.play.services)
     kapt("androidx.room:room-compiler:2.6.1")
     implementation("org.mindrot:jbcrypt:0.4")
 

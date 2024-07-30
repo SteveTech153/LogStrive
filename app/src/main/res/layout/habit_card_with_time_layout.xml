@@ -1,46 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
     card_view:cardCornerRadius="8dp"
     card_view:cardElevation="4dp"
-    card_view:cardBackgroundColor="#685f70">
+    card_view:cardBackgroundColor="#4F772B57">
+<!--    card_view:cardBackgroundColor="#544D5A">-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="8dp">
 
         <ImageView
-            android:id="@+id/card_image"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:src="@drawable/fitness" />
+            android:id="@+id/habit_card_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/habit_icon_1"
+            android:layout_gravity="center"/>
 
         <TextView
-            android:id="@+id/card_title"
+            android:id="@+id/habit_card_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Workout"
+            android:text="Himalayan Meditation"
             android:textAlignment="center"
-            android:textSize="38sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="@color/white"
+            android:textColor="@color/ligtcement"
             />
-
-        <TextView
-            android:id="@+id/card_description"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:textAlignment="center"
-            android:text="Description"
-            android:textSize="24sp"
-            android:textColor="@color/white" />
+            android:layout_gravity="center">
+            <ImageView
+                android:id="@+id/stopwatch_img"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginRight="5dp"
+                card_view:srcCompat="@drawable/stopwatch_white" />
+
+            <TextView
+                android:id="@+id/habit_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="00:30:00"
+                android:textAlignment="center"
+                android:textColor="@color/ligtcement"
+                android:textSize="18sp" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
+</layout>

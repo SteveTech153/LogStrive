@@ -55,10 +55,8 @@ class HabitAdapter(
             binding.habitImage.setImageResource(resId)
 
             binding.root.setOnClickListener {
-                //showEditHabitDialog(habit)
                 listener.onItemClick(habit)
             }
         }
-
     }
 }

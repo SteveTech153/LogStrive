@@ -22,4 +22,6 @@
     <color name="purple_background">#2f013f</color>
 
     <color name="purple_background_darker">#22002D</color>
+
+    <color name="temp_blue_1">#CB413A59</color>
 </resources>

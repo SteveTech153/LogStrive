@@ -1,11 +1,11 @@
 package com.example.logstrive
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HabitDao {
@@ -19,9 +19,12 @@ interface HabitDao {
     suspend fun delete(habit: Habit)
 
     @Query("SELECT * FROM habit WHERE user_id = :userId")
-    fun getAllHabitsForUser(userId: Int): Flow<List<Habit>>
+    fun getAllHabitsForUser(userId: Int): LiveData<List<Habit>>
 
     @Query("DELETE FROM habit WHERE user_id = :userId")
     fun clearAllHabitsForUser(userId: Int)
+
+    @Query("SELECT habit_name FROM habit WHERE habitId = :habitId LIMIT 1")
+    fun getHabitName(habitId: Int): String
 
 }

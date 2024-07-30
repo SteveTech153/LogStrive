@@ -13,32 +13,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import java.util.Date
 
 class HabitViewModel(application: Application, private val repository: HabitRepository) : AndroidViewModel(application) {
-
-//    fun insertHabit(habit: Habit) {
-//        viewModelScope.launch {
-//            repository.insert(habit)
-//        }
-//    }
-//
-//    fun getAllHabitsForUser(userId: Int): Flow<List<Habit>> {
-//        return repository.getAllHabitsForUser(userId)
-//    }
-
 
     private val _userId: Int = getUserIdFromSharedPreferences()
 
     // LiveData to observe habits
-    val allHabits: LiveData<List<Habit>> = liveData(Dispatchers.IO) {
-        repository.getAllHabitsForUser(_userId).collect { habits ->
-            emit(habits)
-        }
-    }
-
-//    val allCategories: LiveData<List<Category>> = liveData(Dispatchers.IO) {
-//        repository.getAllCategories()
-//    }
+    val allHabits: LiveData<List<Habit>> = repository.getAllHabitsForUser(_userId)
 
     // Function to add a habit
     fun addHabit(habit: Habit) {
@@ -47,34 +29,51 @@ class HabitViewModel(application: Application, private val repository: HabitRepo
         }
     }
 
-    fun updateHabit(habit: Habit){
+    suspend fun insertHabitLog(habitLog: HabitLog){
+        repository.insertHabitLog(habitLog)
+    }
+
+    fun updateHabit(habit: Habit) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.update(habit)
         }
     }
 
-    fun deleteHabit(habit: Habit){
+    fun deleteHabit(habit: Habit) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.delete(habit)
         }
     }
 
-    fun clearAllHabits(userId: Int){
+    fun clearAllHabits(userId: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.clearAllHabitsForUser(userId)
         }
+    }
+    fun clearAllLogsOfUserOn(userId: Int, date: Long){
+        repository.clearAllLogsOfUserOn(userId, date)
     }
 
     fun getAllCategories(): LiveData<List<Category>> {
         return repository.getAllCategories()
     }
 
-    suspend fun getIdOfACategory(categoryName: String): Int{
+    suspend fun getIdOfACategory(categoryName: String): Int {
         return repository.getIdOfACategory(categoryName)
     }
 
     private fun getUserIdFromSharedPreferences(): Int {
         return SessionManager.getId(getApplication())
+    }
+
+    suspend fun getHabitLogsForUserOn(userId: Int, date: Long): LiveData<List<HabitLog>> {
+
+            return repository.getHabitLogsForUserOn(userId, date)
+
+    }
+
+    fun getAllHabitsOfUser(userId: Int): LiveData<List<Habit>> {
+        return repository.getAllHabitsForUser(userId)
     }
 }
 
@@ -90,3 +89,4 @@ class HabitViewModelFactory(
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
+

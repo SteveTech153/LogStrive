@@ -11,7 +11,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.logstrive.databinding.FragmentHabitBinding
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.util.Date
 
 class HabitFragment : Fragment(), AddHabitDialog.AddHabitListener, EditHabitDialog.EditHabitListener, HabitAdapter.OnItemClickListener {
 
