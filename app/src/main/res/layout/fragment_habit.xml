@@ -5,7 +5,7 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HabitFragment"
+    tools:context=".presentation.ui.HabitFragment"
     android:background="@color/darkblue2">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,7 +56,7 @@
             android:id="@+id/add_habit_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="48dp"
+            android:layout_marginEnd="56dp"
             android:layout_marginBottom="132dp"
             android:clickable="true"
             android:foregroundTint="@color/white"

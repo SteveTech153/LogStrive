@@ -15,6 +15,10 @@
 
     <color name="brightblue">#A4F5FA</color>
     <color name="brightpurple">#DA4EEF</color>
+    <color name="dialog_btn_color">#A77AC0</color>
+    <color name="error_color">#fa6673</color>
+    <color name="darkpurple">#4E4259</color>
+    <color name="darkpurple_half_transparent">#854E4259</color>
 
     <color name="purple_700">#6200EA</color>
     <color name="purple_900">#3700B3</color>

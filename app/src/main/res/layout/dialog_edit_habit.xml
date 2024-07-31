@@ -12,6 +12,7 @@
             android:id="@+id/edit_habit_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
             android:hint="Habit Name" />
 
         <Spinner
@@ -20,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:paddingLeft="8dp"
             android:spinnerMode="dropdown" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +39,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/delete_button"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                android:textColor="@color/brightblue"/>
+                android:textColor="@color/dialog_btn_color"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/delete_button"
@@ -45,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:text="Delete"
                 android:backgroundTint="@color/transparent"
-                android:textColor="#fa6673"
+                android:textColor="@color/error_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/edit_button"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -58,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:text="Edit"
                 android:backgroundTint="@color/transparent"
-                android:textColor="@color/brightpurple"
+                android:textColor="@color/dialog_btn_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
