@@ -60,7 +60,6 @@ dependencies {
     implementation(libs.adapter.guava)
     implementation(libs.converter.gson)
     implementation(libs.kotlinx.coroutines.play.services)
-    implementation(libs.view)
     "kapt"("androidx.room:room-compiler:2.6.1")
     implementation("org.mindrot:jbcrypt:0.4")
 
