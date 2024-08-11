@@ -13,13 +13,18 @@
     <color name="darkblue2_lighter">#211933</color>
     <color name="transparent">#00FFFFFF</color>
 
+    <color name="graph_item_purple">#8240B7</color>
     <color name="brightblue">#A4F5FA</color>
     <color name="brightpurple">#DA4EEF</color>
     <color name="dialog_btn_color">#A77AC0</color>
     <color name="error_color">#fa6673</color>
+    <color name="error_color_darker">#D0555F</color>
     <color name="darkpurple">#4E4259</color>
     <color name="darkpurple_half_transparent">#854E4259</color>
-
+    <color name="darker_gray">#85828282</color>
+    <color name="gray_yesterday_habit_card">#4D7D7D7D</color>
+    <color name="purple_half_transparent_today_habit_card">#4F772B57</color>
+    <color name="pinkish_purple_quote_card">#4E4259</color>
     <color name="purple_700">#6200EA</color>
     <color name="purple_900">#3700B3</color>
     <color name="purple_500">#BB86FC</color>

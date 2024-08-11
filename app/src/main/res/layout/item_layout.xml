@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/habit_image"
         android:layout_width="83dp"
         android:layout_height="91dp"
@@ -14,7 +14,7 @@
 
         android:src="@drawable/category_1" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/habit_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

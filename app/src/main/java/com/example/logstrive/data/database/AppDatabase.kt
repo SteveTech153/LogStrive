@@ -20,8 +20,6 @@ import com.example.logstrive.data.database.dao.UserDao
 @Database(
     entities = [User::class, Category::class, Habit::class, DailyLog::class, HabitLog::class],
     version = 1,
-//    autoMigrations = [AutoMigration(1, 2)],
-//    exportSchema = true
 )
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
@@ -40,19 +38,13 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "app_db"
+                    "App_database"
                 ).build()
                 INSTANCE = instance
                 instance
             }
         }
     }
-//    class Migration_1_2 : Migration(1, 2) {
-//        override fun migrate(database: SupportSQLiteDatabase) {
-//            database.execSQL("ALTER TABLE habit_log ADD COLUMN timestamp INTEGER NOT NULL DEFAULT 0")
-//            database.execSQL("DROP INDEX IF EXISTS index_habit_log_user_id_habit_id_date")
-//            database.execSQL("CREATE UNIQUE INDEX index_habit_log_user_id_habit_id_date_timestamp ON habit_log (user_id, habit_id, date, timestamp)")
-//        }
-//    }
+
 
 }

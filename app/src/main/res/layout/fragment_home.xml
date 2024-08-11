@@ -3,18 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.ui.HabitFragment"
         android:background="@color/darkblue2">
-
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
-            <!--        android:layout_width="match_parent"-->
-            <!--        android:layout_height="wrap_content"-->
-            <!--        >-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/yesterdays_record_recycler_view"
@@ -22,23 +26,25 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingLeft="25dp"
-                android:paddingRight="25dp"
                 android:paddingTop="20dp"
+                android:paddingRight="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_yesterdays_record" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_yesterdays_record"
+                app:layout_constraintVertical_bias="0.0" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_yesterdays_record"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:paddingLeft="35dp"
-                android:text="Yesterday's Record"
-                android:visibility="gone"
+                android:text="@string/yesterdays_record"
                 android:textColor="@color/ligtcement"
                 android:textSize="20sp"
-                app:layout_constraintTop_toBottomOf="@+id/todays_record_recycler_view"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/tv_add_records_to_get_started"
                 tools:layout_editor_absoluteX="-1dp" />
 
             <com.google.android.material.imageview.ShapeableImageView
@@ -59,7 +65,7 @@
                 android:layout_marginTop="100dp"
                 android:background="@drawable/line_dark_background"
                 android:paddingLeft="35dp"
-                android:text="Hi User"
+                android:text="@string/hi_user"
                 android:textColor="@color/ligtcement"
                 android:textSize="32sp"
                 android:textStyle="bold"
@@ -73,7 +79,7 @@
                 android:layout_marginEnd="15dp"
                 app:cardElevation="10dp"
                 android:layout_margin="10dp"
-                app:cardBackgroundColor="#4E4259"
+                app:cardBackgroundColor="@color/pinkish_purple_quote_card"
                 app:cardMaxElevation="12dp"
                 app:cardPreventCornerOverlap="true"
                 app:cardUseCompatPadding="true"
@@ -93,7 +99,7 @@
                     android:paddingRight="20dp"
                     android:paddingLeft="20dp"
                     android:paddingBottom="5dp"
-                    android:text="                                                                                                         "
+                    android:text="                                                                                          "
                     android:textColor="@color/ligtcement"
                     android:textStyle="italic"
                     android:textSize="16sp" />
@@ -130,8 +136,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:paddingLeft="35dp"
-                android:text="Today's Record"
-                android:visibility="gone"
+                android:text="@string/todays_record"
+                android:visibility="visible"
                 android:textColor="@color/ligtcement"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -150,21 +156,92 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_todays_record" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/home_fab"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tv_add_records_to_get_started"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="48dp"
-                android:layout_marginBottom="132dp"
-                android:backgroundTint="@color/purple1"
-                android:clickable="true"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="30dp"
+                android:fontFamily="serif-monospace"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="90dp"
+                android:text="Add records to start your day"
+                android:visibility="visible"
+                android:textColor="@color/darker_gray"
+                android:textSize="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:rippleColor="@color/white"
-                app:srcCompat="@drawable/baseline_add_24" />
+                app:layout_constraintHorizontal_bias="0.494"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_todays_record" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
-            <!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/home_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple1"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="20dp"
+            android:clickable="true"
+            app:rippleColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/baseline_add_24" />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_summary_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="24dp"
+            android:clickable="true"
+            android:visibility="gone"
+            android:backgroundTint="@color/purple1"
+            app:layout_constraintBottom_toTopOf="@+id/home_fab"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/baseline_post_add_24" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_habit_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:visibility="gone"
+            android:backgroundTint="@color/purple1"
+            app:layout_constraintBottom_toTopOf="@+id/fab_summary_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/baseline_add_task_24" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_add_habit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="180dp"
+            android:background="@color/black"
+            android:padding="10dp"
+            android:text="@string/add_habit_record"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fab_habit_add" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_add_summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="110dp"
+            android:background="@color/black"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:text="@string/add_summary"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fab_summary_add" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>

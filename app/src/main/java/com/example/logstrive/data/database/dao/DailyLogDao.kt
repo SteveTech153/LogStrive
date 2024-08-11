@@ -13,5 +13,6 @@ interface DailyLogDao {
     suspend fun insertOrUpdateDailyLog(dailyLog: DailyLog)
 
     @Query("SELECT * FROM daily_log WHERE user_id = :userId AND date = :date")
-    suspend fun getDailyLog(userId: Int, date: Date): DailyLog?
+    suspend fun getDailyLog(userId: Int, date: Long): DailyLog?
+
 }

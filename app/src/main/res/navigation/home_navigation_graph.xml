@@ -10,4 +10,28 @@
         android:name="com.example.logstrive.presentation.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/graphFragment"
+        android:name="com.example.logstrive.presentation.ui.GraphFragment"
+        android:label="fragment_graph"
+        tools:layout="@layout/fragment_graph" />
+
+    <fragment
+        android:id="@+id/habitFragment"
+        android:name="com.example.logstrive.presentation.ui.HabitFragment"
+        android:label="fragment_habits"
+        tools:layout="@layout/fragment_habit" />
+
+    <fragment
+        android:id="@+id/lookbackFragment"
+        android:name="com.example.logstrive.presentation.ui.LookbackFragment"
+        android:label="fragment_lookback"
+        tools:layout="@layout/fragment_lookback" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.logstrive.presentation.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

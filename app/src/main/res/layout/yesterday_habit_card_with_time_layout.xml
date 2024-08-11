@@ -7,7 +7,7 @@
         android:layout_margin="8dp"
         card_view:cardCornerRadius="8dp"
         card_view:cardElevation="4dp"
-        card_view:cardBackgroundColor="#4D7D7D7D">
+        card_view:cardBackgroundColor="@color/gray_yesterday_habit_card">
 
 
         <LinearLayout
@@ -16,19 +16,19 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/habit_card_image"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/habit_icon_1"
                 android:layout_gravity="center"/>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/habit_card_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Himalayan Meditation"
+                android:text=""
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/stopwatch_img"
                     android:layout_marginTop="5dp"
                     android:layout_width="20dp"
@@ -46,12 +46,12 @@
                     android:layout_marginRight="5dp"
                     card_view:srcCompat="@drawable/stopwatch_lightcement" />
 
-                <TextView
+                <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/habit_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="00:30:00"
+                    android:text=""
                     android:textAlignment="center"
                     android:textColor="@color/ligtcement"
                     android:textSize="18sp" />

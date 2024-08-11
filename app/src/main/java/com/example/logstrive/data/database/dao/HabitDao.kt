@@ -19,16 +19,15 @@ interface HabitDao {
     @Delete
     suspend fun delete(habit: Habit)
 
+    @Query("SELECT habit_name FROM habit WHERE user_id = :userId")
+    suspend fun getAllHabitNames(userId: Int): List<String>
+
     @Query("SELECT * FROM habit WHERE user_id = :userId")
     fun getAllHabitsForUser(userId: Int): LiveData<List<Habit>>
 
     @Query("DELETE FROM habit WHERE user_id = :userId")
-    fun clearAllHabitsForUser(userId: Int)
-
-    @Query("SELECT habit_name FROM habit WHERE habitId = :habitId LIMIT 1")
-    fun getHabitName(habitId: Int): String
+    suspend fun clearAllHabitsForUser(userId: Int)
 
     @Query("SELECT COUNT(*) FROM habit WHERE user_id = :userId")
     suspend fun getHabitsCountOfUser(userId: Int): Int
-
 }

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="771dp"
+        android:background="@color/darkblue2"
+        tools:context=".presentation.ui.HabitFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <!--    <androidx.coordinatorlayout.widget.CoordinatorLayout-->
+                <!--        android:layout_width="match_parent"-->
+                <!--        android:layout_height="wrap_content"-->
+                <!--        >-->
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/landscape4_dark"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:layout_editor_absoluteY="3dp"
+                    tools:ignore="MissingConstraints" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_lookback"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/line_dark_background"
+                    android:paddingLeft="20dp"
+                    android:text="@string/look_back"
+                    android:textColor="@color/ligtcement"
+                    android:textSize="32sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CalendarView
+                    android:id="@+id/calendar_view"
+                    android:layout_width="315dp"
+                    android:layout_height="298dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_lookback"
+                    app:layout_constraintVertical_bias="0.035" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_date_summary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="44dp"
+                    android:text="@string/summary"
+                    android:textColor="@color/ligtcement"
+                    android:textSize="20sp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="@+id/tv_summary"
+                    app:layout_constraintTop_toBottomOf="@+id/calendar_view" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_summary"
+                    android:layout_width="286dp"
+                    android:layout_height="94dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/textview_border"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textColor="@color/ligtcement"
+                    android:textSize="16sp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_date_summary" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_overallmood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="16dp"
+                    android:text="@string/overall_mood"
+                    android:textColor="@color/ligtcement"
+                    android:textSize="18sp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="@+id/tv_summary"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_summary" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tv_emoji"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text=""
+                    android:visibility="visible"
+                    android:textSize="18sp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toEndOf="@+id/tv_overallmood"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_summary" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_habit_record"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_overallmood"
+                    app:layout_constraintVertical_bias="0.0" />
+
+
+                <!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
+</layout>

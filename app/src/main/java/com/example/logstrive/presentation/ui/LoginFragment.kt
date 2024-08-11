@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        binding = FragmentLoginBinding.inflate(inflater)
 
         binding.tvSingupNavigate.setOnClickListener{
             val action = LoginFragmentDirections.actionLoginFragmentToSignupFragment()
@@ -44,13 +44,13 @@ class LoginFragment : Fragment() {
             userViewModel.login(requireContext(), username, password){ success ->
                 if(success){
                     if(!SessionManager.isLoggedIn(requireContext())){
-                        Toast.makeText(context, "Login successful !", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, getString(R.string.login_successful), Toast.LENGTH_LONG).show()
                     }
                     val intent = Intent(activity, HomeActivity::class.java)
                     startActivity(intent)
                     activity?.finish()
                 }else{
-                    Snackbar.make(binding.root, "Invalid login credentials", Snackbar.LENGTH_LONG).setTextMaxLines(5).show()
+                    Snackbar.make(binding.root, getString(R.string.invalid_login_credentials), Snackbar.LENGTH_LONG).setTextMaxLines(5).show()
                 }
             }
         }

@@ -20,10 +20,9 @@ class HomeViewModel: ViewModel() {
     private fun fetchQuote() {
         viewModelScope.launch {
             try {
-//                binding.progressBar.visibility = View.VISIBLE
-                _quote.value = RetrofitInstance.api.getQuote()[0]
+                _quote.value = RetrofitInstance.api.getQuote()
             } catch (e: Exception) {
-                // set a default quote
+                _quote.value = Quote("Success is the sum of small efforts, repeated day in and day out", author = "Robert Collier", "", "", "")
             }
         }
     }

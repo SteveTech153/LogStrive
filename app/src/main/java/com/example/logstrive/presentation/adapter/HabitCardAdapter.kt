@@ -25,15 +25,14 @@ class HabitCardAdapter(private var habitCardItems: List<HabitCardItem>) : Recycl
         val habitCardItem = habitCardItems[position]
         holder.binding.habitCardTitle.text = habitCardItem.name
         holder.binding.habitTime.text = habitCardItem.duration
-        holder.binding.habitCardImage.setImageResource(
-            holder.itemView.context.resources.getIdentifier(
+        holder.binding.habitCardImage.setImageResource (
+            holder.itemView.context.resources.getIdentifier( //TODO
                 habitCardItem.imageName, "drawable", holder.itemView.context.packageName
             )
         )
     }
 
     override fun getItemCount(): Int {
-        println("cards count : ${habitCardItems.size}")
         return habitCardItems.size
     }
 }

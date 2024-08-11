@@ -1,10 +1,10 @@
 package com.example.logstrive.data.entity
 
 data class Quote(
-    val q: String,
-    val a: String,
-    val i: String,
-    val c: String,
-    val h: String
+    val quote: String,
+    val author: String,
+    val ignore1: String,
+    val ignore2: String,
+    val ignore3: String
 )
 

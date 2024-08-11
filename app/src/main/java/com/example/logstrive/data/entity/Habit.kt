@@ -12,20 +12,20 @@ import androidx.room.PrimaryKey
     foreignKeys = [
         ForeignKey(
             entity = User::class,
-            parentColumns = ["userId"],
+            parentColumns = ["user_id"],
             childColumns = ["user_id"],
             onDelete = ForeignKey.CASCADE
         ),
         ForeignKey(
             entity = Category::class,
-            parentColumns = ["categoryId"],
+            parentColumns = ["category_id"],
             childColumns = ["category_id"],
             onDelete = ForeignKey.CASCADE
         )
     ]
 )
 data class Habit(
-    @PrimaryKey(autoGenerate = true) val habitId: Int = 0,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo("habit_id") val habitId: Int = 0,
     @ColumnInfo(name = "user_id") val userId: Int,
     @ColumnInfo(name = "category_id") val categoryId: Int,
     @ColumnInfo(name = "habit_name") val habitName: String

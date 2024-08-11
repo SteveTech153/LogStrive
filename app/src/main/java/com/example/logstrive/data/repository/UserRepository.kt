@@ -9,7 +9,19 @@ class UserRepository(private val userDao: UserDao) {
         userDao.insertUser(user)
     }
 
-    suspend fun getUserByUsername(username: String): User? {
+    suspend fun getUserByUsername(username: String): User {
         return userDao.getUserByUsername(username)
+    }
+
+    suspend fun updateUsername(newUsername: String, userId: Int){
+        userDao.updateUsername(newUsername, userId)
+    }
+
+    suspend fun getAccountCreatedDate(userId: Int): Long{
+        return userDao.getAccountCreatedDate(userId)
+    }
+
+    suspend fun updateUserAccountCreatedDate(userId: Int, newDate: Long){
+        userDao.updateUserAccountCreatedDate(userId, newDate)
     }
 }

@@ -13,7 +13,7 @@ import java.util.Date
     foreignKeys = [
         ForeignKey(
             entity = User::class,
-            parentColumns = ["userId"],
+            parentColumns = ["user_id"],
             childColumns = ["user_id"],
             onDelete = ForeignKey.CASCADE
         )
@@ -22,8 +22,8 @@ import java.util.Date
 data class DailyLog(
     @PrimaryKey(autoGenerate = true) val logId: Int = 0,
     @ColumnInfo(name = "user_id") val userId: Int,
-    @ColumnInfo(name = "date") val date: Date,
+    @ColumnInfo(name = "date") val date: Long,
     @ColumnInfo(name = "summary") val summary: String,
-    @ColumnInfo(name = "overall_mood") val overallMood: String
+    @ColumnInfo(name = "overall_mood") val overallMood: Int
 )
 

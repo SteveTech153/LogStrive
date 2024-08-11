@@ -1,8 +1,10 @@
 package com.example.logstrive.presentation.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.logstrive.R
 import com.example.logstrive.util.SessionManager
 
@@ -11,13 +13,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         if (SessionManager.isLoggedIn(this)) {
-            // User is logged in, proceed to main screen
-//            startActivity(Intent(this, HomeActivity::class.java))
-        } else {
-            // User is not logged in, proceed to login screen
-//            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
         }
     }
 }

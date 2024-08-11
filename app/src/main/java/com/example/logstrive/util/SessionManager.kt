@@ -22,6 +22,12 @@ object SessionManager {
         editor.apply()
     }
 
+    fun updateUsername(context: Context, username: String){
+        val editor = getPreferences(context).edit()
+        editor.putString(KEY_USERNAME, username)
+        editor.apply()
+    }
+
     fun logout(context: Context) {
         val editor = getPreferences(context).edit()
         editor.putBoolean(KEY_IS_LOGGED_IN, false)

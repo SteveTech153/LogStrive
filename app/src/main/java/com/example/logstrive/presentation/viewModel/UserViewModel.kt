@@ -6,8 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.logstrive.util.SessionManager
 import com.example.logstrive.data.entity.User
 import com.example.logstrive.data.repository.UserRepository
+import com.example.logstrive.util.Helper
 import kotlinx.coroutines.launch
 import org.mindrot.jbcrypt.BCrypt
+import java.util.Date
 
 class UserViewModel(private val repository: UserRepository) : ViewModel() {
 
@@ -16,10 +18,10 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
             val existingUser = repository.getUserByUsername(username)
             if (existingUser == null) {
                 val hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt())
-                repository.insertUser(User(username = username, password = hashedPassword))
-                val userId = repository.getUserByUsername(username)?.userId
+                repository.insertUser(User(username = username, password = hashedPassword, accountCreatedDate =  Helper.convertDateToLong(Date())) )
+                val userId = repository.getUserByUsername(username).userId
 
-                userId?.let { SessionManager.login(context, username, userId) }
+                userId.let { SessionManager.login(context, username, userId) }
 
                 callback(true)
             } else {
@@ -38,6 +40,28 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
                 callback(false)
             }
         }
+    }
+    fun logout(context: Context) {
+        viewModelScope.launch {
+            SessionManager.logout(context)
+        }
+    }
+
+    fun updateUsername(context: Context, newUsername: String, userId: Int, callback: (Boolean) -> Unit){
+        viewModelScope.launch {
+            val existingUser = repository.getUserByUsername(newUsername)
+            if (existingUser == null) {
+                repository.updateUsername(newUsername, userId)
+                SessionManager.updateUsername(context, newUsername)
+                callback(true)
+            }else{
+                callback(false)
+            }
+        }
+    }
+
+    suspend fun getAccountCreatedDate(userId: Int): Long{
+        return repository.getAccountCreatedDate(userId)
     }
 
     fun isUsernameValid(username: String): Boolean {

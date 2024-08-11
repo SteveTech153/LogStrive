@@ -13,9 +13,9 @@
         android:icon="@drawable/home"
         android:title="Home" />
     <item
-        android:id="@+id/nav_progress"
+        android:id="@+id/nav_lookback"
         android:icon="@drawable/calendar"
-        android:title="Progress" />
+        android:title="Look back" />
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/account"

@@ -16,12 +16,18 @@ interface HabitLogDao {
     @Query("SELECT * FROM habit_log WHERE user_id = :userId AND habit_id = :habitId AND date = :date")
     suspend fun getAHabitLog(userId: Int, habitId: Int, date: Long): HabitLog?
 
-    @Query("SELECT * FROM habit_log WHERE user_id = :userId AND habit_id = :habitId")
-    suspend fun getHabitLogsForUser(userId: Int, habitId: Int): List<HabitLog>
+    @Query("SELECT * FROM habit_log WHERE user_id = :userId AND date = :date ORDER BY timestamp")
+    fun getHabitLogsForUserOnAsLiveData(userId: Int, date: Long): LiveData<List<HabitLog>>
 
     @Query("SELECT * FROM habit_log WHERE user_id = :userId AND date = :date ORDER BY timestamp")
-    fun getHabitLogsForUserOn(userId: Int, date: Long): LiveData<List<HabitLog>>
+    suspend fun getHabitLogsForUserOn(userId: Int, date: Long): List<HabitLog>
 
     @Query("DELETE FROM habit_log WHERE user_id = :userId AND date = :date")
-    fun clearAllLogsOfUserOn(userId: Int, date: Long)
+    suspend fun clearAllLogsOfUserOn(userId: Int, date: Long)
+
+    @Query("SELECT date FROM habit_log WHERE user_id = :userId AND habit_id = :habitId")
+    suspend fun getAllActiveDatesForHabitOf(habitId: Int, userId: Int): List<Long>
+
+    @Query("DELETE FROM habit_log WHERE user_id = :userId")
+    suspend fun clearAllUserHabitLogs(userId: Int)
 }

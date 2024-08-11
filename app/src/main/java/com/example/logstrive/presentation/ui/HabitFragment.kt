@@ -1,9 +1,11 @@
 package com.example.logstrive.presentation.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -19,8 +21,9 @@ import kotlinx.coroutines.launch
 
 class HabitFragment : Fragment(), AddHabitDialog.AddHabitListener,
     EditHabitDialog.EditHabitListener, HabitAdapter.OnItemClickListener {
-
     private lateinit var binding: FragmentHabitBinding
+    private var isDialogOpen: Boolean = false
+    private var dialog: AddHabitDialog? = null
     private val habitViewModel: HabitViewModel by viewModels {
         HabitViewModelFactory(requireActivity().application ,(requireActivity().application as MyApp).habitRepository)
     }
@@ -44,7 +47,10 @@ class HabitFragment : Fragment(), AddHabitDialog.AddHabitListener,
         }
 
         binding.addHabitFab.setOnClickListener {
-            AddHabitDialog(this).show(parentFragmentManager, "AddHabitDialog")
+            isDialogOpen = true
+            dialog = AddHabitDialog.newInstance(this)
+            dialog?.show(childFragmentManager, "AddHabitDialog")
+
         }
 
         habitViewModel.allHabits.observe(viewLifecycleOwner) { habits ->
@@ -52,13 +58,27 @@ class HabitFragment : Fragment(), AddHabitDialog.AddHabitListener,
         }
     }
 
-    override fun onHabitAdded(habitName: String, categoryId: Int) {
+    override fun onHabitAdded(habitName: String, categoryId: Int, callback: (Boolean)-> Unit) {
         val userId = SessionManager.getId(requireContext())
         if (userId != -1) {
-            val habit = Habit(habitName = habitName, categoryId = categoryId, userId = userId)
+            val habit = Habit(habitName = habitName.lowercase(), categoryId = categoryId, userId = userId)
             lifecycleScope.launch {
-                habitViewModel.addHabit(habit)
+                habitViewModel.addHabit(habit){ success ->
+                    callback(success)
+                }
             }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean("isDialogOpen", isDialogOpen)
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        if(savedInstanceState?.getBoolean("isDialogOpen") == true){
+            dialog?.show(parentFragmentManager, "AddHabitDialog")
         }
     }
 
@@ -75,6 +95,6 @@ class HabitFragment : Fragment(), AddHabitDialog.AddHabitListener,
     }
 
     override fun onItemClick(habit: Habit) {
-        EditHabitDialog(habit, this).show(parentFragmentManager, "EditHabitDialog")
+        EditHabitDialog.newInstance(habit, this).show(parentFragmentManager, "EditHabitDialog")
     }
 }
