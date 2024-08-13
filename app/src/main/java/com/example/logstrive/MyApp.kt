@@ -62,11 +62,11 @@ class MyApp : Application() {
 //                }
 //                habitRepository.clearAllUserHabitLogs(4)
 //                generateRandomEntries()
-                habitRepository.insertHabitLog(HabitLog(userId = 4, habitId = 10, date = Helper.convertDateToLong(Helper.getYesterdayDate()), duration = 20, timestamp = Helper.convertDateToLong(Helper.getYesterdayDate())))
-                habitRepository.insertHabitLog(HabitLog(userId = 4, habitId = 11, date = Helper.convertDateToLong(Helper.getYesterdayDate()), duration = 20, timestamp = Helper.convertDateToLong(Helper.getYesterdayDate())))
-                habitRepository.insertHabitLog(HabitLog(userId = 4, habitId = 12, date = Helper.convertDateToLong(Helper.getYesterdayDate()), duration = 20, timestamp = Helper.convertDateToLong(Helper.getYesterdayDate())))
-                habitRepository.insertHabitLog(HabitLog(userId = 4, habitId = 13, date = Helper.convertDateToLong(Helper.getYesterdayDate()), duration = 20, timestamp = Helper.convertDateToLong(Helper.getYesterdayDate())))
-                habitRepository.insertDailyLog(DailyLog(userId = 4, date = Helper.convertDateToLong(Helper.getYesterdayDate()), summary = "Preetttyyy okayy day. lorem ipsum dolor amei solo lorem ipsum", overallMood = 2))
+//                habitRepository.insertHabitLog(HabitLog(userId = 4, habitId = 10, date = Helper.convertDateToLong(Helper.getYesterdayDate()), duration = 20, timestamp = Helper.convertDateToLong(Helper.getYesterdayDate())))
+//                habitRepository.insertHabitLog(HabitLog(userId = 4, habitId = 11, date = Helper.convertDateToLong(Helper.getYesterdayDate()), duration = 20, timestamp = Helper.convertDateToLong(Helper.getYesterdayDate())))
+//                habitRepository.insertHabitLog(HabitLog(userId = 4, habitId = 12, date = Helper.convertDateToLong(Helper.getYesterdayDate()), duration = 20, timestamp = Helper.convertDateToLong(Helper.getYesterdayDate())))
+//                habitRepository.insertHabitLog(HabitLog(userId = 4, habitId = 13, date = Helper.convertDateToLong(Helper.getYesterdayDate()), duration = 20, timestamp = Helper.convertDateToLong(Helper.getYesterdayDate())))
+//                habitRepository.insertDailyLog(DailyLog(userId = 4, date = Helper.convertDateToLong(Helper.getYesterdayDate()), summary = "Preetttyyy okayy day. lorem ipsum dolor amei solo lorem ipsum", overallMood = 2))
             }
             //habitRepository.insertHabitLog(HabitLog(userId = 1, habitId = 1, date = getTimeMillis(2024, 2, 1), duration = 20, timestamp =  getTimeMillis(2024, 2, 1)) )
 
