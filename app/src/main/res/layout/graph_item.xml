@@ -16,13 +16,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="25dp">
+            android:layout_marginBottom="25dp"
+            >
 
             <com.example.logstrive.presentation.ui.HeatmapView
                 android:id="@+id/heatmapView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:paddingRight="20dp"
                 />
         </LinearLayout>
 

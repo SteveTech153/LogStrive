@@ -7,7 +7,6 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.logstrive.data.entity.Category
 import com.example.logstrive.data.database.dao.CategoryDao
-import com.example.logstrive.util.Converters
 import com.example.logstrive.data.entity.DailyLog
 import com.example.logstrive.data.database.dao.DailyLogDao
 import com.example.logstrive.data.entity.Habit
@@ -21,7 +20,6 @@ import com.example.logstrive.data.database.dao.UserDao
     entities = [User::class, Category::class, Habit::class, DailyLog::class, HabitLog::class],
     version = 1,
 )
-@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
     abstract fun categoryDao(): CategoryDao

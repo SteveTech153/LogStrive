@@ -4,8 +4,8 @@
     <string name="hint_habit_name">Habit Name</string>
     <string name="habit_error_msg">Habit name cannot be empty</string>
     <string name="habit_unique_error_msg"> please enter a unique name</string>
-    <string name="cancel">cancel</string>
-    <string name="add">add</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
     <string name="duration">Duration</string>
     <string name="duration_req">Please set a duration</string>
     <string name="summarize_your_day">Summarize your day</string>
@@ -51,4 +51,6 @@
     <string name="username_edited">username edited !</string>
     <string name="please_enter_username_correctly">please enter a alphanumeric 6-15 length username</string>
     <string name="bye">Byee!</string>
+    <string name="add_records_to_start_your_day">Add records to start your day</string>
+    <string name="add_habits_to_start_your_journey">Add habits to start your journey</string>
 </resources>

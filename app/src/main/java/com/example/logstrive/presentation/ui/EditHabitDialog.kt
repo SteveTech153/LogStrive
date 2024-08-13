@@ -135,7 +135,7 @@ class EditHabitDialog() : DialogFragment() {
         outState.putInt("habitCategoryPositionSelected", habitCategoryPositionSelected!!)
     }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {  /// L
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         binding.editHabitName.setText(savedInstanceState?.getString("habitName"))
         savedInstanceState?.getInt("habitCategoryPositionSelected")?.let { position ->

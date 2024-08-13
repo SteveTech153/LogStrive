@@ -7,8 +7,7 @@ import androidx.room.PrimaryKey
 import java.util.Locale
 
 @Entity(
-    tableName = "category",
-    indices =  [Index( value = ["category_name"], unique = true)]
+    tableName = "category"
 )
 data class Category(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "category_id") val categoryId: Int = 0,

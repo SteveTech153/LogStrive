@@ -1,6 +1,7 @@
 package com.example.logstrive.presentation.ui
 
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.EditText
@@ -21,26 +22,26 @@ import java.util.Date
 
 class AddSummaryDialog : DialogFragment() {
 
-    private var listener: EmojiClickedListener? = null
+    private var listener: AddSummaryListener? = null
     private var adapter: EmojiAdapter? = null
     private lateinit var binding: DialogAddSummaryBinding
     private var selectedPosition: Int = 3
 
-    interface EmojiClickedListener {
-        fun onEmojiClicked(dailyLog: DailyLog)
+    interface AddSummaryListener {
+        fun onSummaryAdd(dailyLog: DailyLog)
     }
 
     companion object {
-        fun newInstance(listener: EmojiClickedListener): AddSummaryDialog {
+        fun newInstance(listener: AddSummaryListener): AddSummaryDialog {
             val dialog = AddSummaryDialog()
             dialog.listener = listener
             return dialog
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        this.listener = parentFragment as? EmojiClickedListener
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        this.listener = parentFragment as? AddSummaryListener
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -62,7 +63,7 @@ class AddSummaryDialog : DialogFragment() {
         val etvSummary = binding.etvSummary
         binding.addBtn.setOnClickListener {
             if (etvSummary.text?.isNotBlank() == true) {
-                listener?.onEmojiClicked(
+                listener?.onSummaryAdd(
                     DailyLog(
                         userId = SessionManager.getId(requireContext()),
                         date = Helper.convertDateToLong(Date()),

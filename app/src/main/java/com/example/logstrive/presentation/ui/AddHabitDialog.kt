@@ -45,15 +45,6 @@ class AddHabitDialog : DialogFragment() {
             return dialog
         }
     }
-//
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        listener = parentFragment as? AddHabitListener
-//    }
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        listener = parentFragment as? AddHabitListener
-//    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -61,11 +52,9 @@ class AddHabitDialog : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        listener = requireParentFragment() as? AddHabitListener
         binding = DialogAddHabitBinding.inflate(LayoutInflater.from(context), null, false)
         val builder = AlertDialog.Builder(requireContext())
 
-        // Restore state
         habitNameEntered = savedInstanceState?.getString("habitName")
         habitCategoryPositionSelected = savedInstanceState?.getInt("habitCategoryPositionSelected")
 

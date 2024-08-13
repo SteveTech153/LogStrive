@@ -1,5 +1,6 @@
 package com.example.logstrive.presentation.ui
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,7 +39,7 @@ import kotlinx.coroutines.withContext
 import java.sql.Time
 import java.util.*
 
-class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, AddSummaryDialog.EmojiClickedListener
+class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, AddSummaryDialog.AddSummaryListener
 {
     private val thisKeyword = this
     private lateinit var binding: FragmentHomeBinding
@@ -52,9 +53,6 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
 
     private var habits: List<Habit> = emptyList()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -86,6 +84,7 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
                 "AddHabitRecordDialog"
             )
         }
+
         binding.fabSummaryAdd.setOnClickListener{
             summaryDialog = AddSummaryDialog.newInstance(thisKeyword)
             summaryDialog!!.show(
@@ -97,16 +96,17 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
         habitViewModel.allHabits.observe(viewLifecycleOwner) { habitsList ->
             habits = habitsList
             lifecycleScope.launch {
-                updateHabitLogs(userId)
+                updateHabitLogs()
                 updateYesterdayHabitLogs(userId)
             }
         }
+
 
         binding.todaysRecordRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.yesterdaysRecordRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
     }
 
-    private fun updateHabitLogs(userId: Int) {
+    private fun updateHabitLogs() {
         habitViewModel.todaysHabitLogsOfUser.observe(viewLifecycleOwner){ logs ->
             val habitMap = habits.associateBy { it.habitId }
 
@@ -126,7 +126,7 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
             if (!habitCardItems.isNullOrEmpty()) {
                 binding.tvAddRecordsToGetStarted.visibility = View.INVISIBLE
                 binding.tvTodaysRecord.visibility = View.VISIBLE
-                val habitCardAdapter = HabitCardAdapter(habitCardItems)
+                val habitCardAdapter = YesterdayHabitCardAdapter(habitCardItems)
                 binding.todaysRecordRecyclerView.adapter = habitCardAdapter
             } else {
                 binding.todaysRecordRecyclerView.adapter = null
@@ -159,7 +159,7 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
             withContext(Dispatchers.Main) {
                 if (!habitCardItems.isNullOrEmpty()) {
                     binding.tvYesterdaysRecord.visibility = View.VISIBLE
-                    val habitCardAdapter = YesterdayHabitCardAdapter(habitCardItems)
+                    val habitCardAdapter = HabitCardAdapter(habitCardItems)
                     binding.yesterdaysRecordRecyclerView.adapter = habitCardAdapter
                 } else {
                     binding.yesterdaysRecordRecyclerView.adapter = null
@@ -169,10 +169,9 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
     }
 
     override fun onHabitLogAdded(habitLog: HabitLog) {
-        lifecycleScope.launch { //changed here
+        lifecycleScope.launch {
             habitViewModel.insertHabitLog(habitLog)
-            // Call updateHabitLogs immediately after inserting the log
-            updateHabitLogs(SessionManager.getId(requireContext()))
+            updateHabitLogs()
             updateYesterdayHabitLogs(SessionManager.getId(requireContext()))
         }
     }
@@ -211,14 +210,21 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
                 if (isFabMenuOpen) {
                     closeFabMenu(fabOption1, textOption1, fabOption2, textOption2)
                 } else {
-                    openFabMenu(fabOption1, textOption1, fabOption2, textOption2)
+                    lifecycleScope.launch {
+                        if(habitViewModel.getDailyLog(SessionManager.getId(requireContext()), Helper.convertDateToLong(Date())) == null){
+                            binding.fabSummaryAdd.visibility = View.GONE
+                            openFabMenu(fabOption1, textOption1, fabOption2, textOption2)
+                        }else {
+                            openFabMenu(fabOption1, textOption1)
+                        }
+                    }
                 }
                 isFabMenuOpen = !isFabMenuOpen
             }
         }
     }
 
-    override fun onEmojiClicked(dailyLog: DailyLog) {
+    override fun onSummaryAdd(dailyLog: DailyLog) {
         lifecycleScope.launch {
             if (habitViewModel.getDailyLog(SessionManager.getId(requireContext()), Helper.convertDateToLong(Date())) == null) {
                 habitViewModel.insertDailyLog(dailyLog)
@@ -233,33 +239,18 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
         super.onSaveInstanceState(outState)
         habitRecordDialog?.isVisible?.let { outState.putBoolean("habitRecordDialogShown", it) }
         summaryDialog?.isVisible?.let { outState.putBoolean("summaryDialogShown", it) }
-
-        habitRecordDialog?.let {
-            it.view?.findViewById<Spinner>(R.id.edit_habit_spinner)?.selectedItemPosition?.let { position ->
-                outState.putInt("habitPosition", position)
-            }
-            it.view?.findViewById<TimePicker>(R.id.timepicker)?.minute?.let { minute ->
-                outState.putInt("durationMinute", minute)
-            }
-            it.view?.findViewById<TimePicker>(R.id.timepicker)?.hour?.let { hour ->
-                outState.putInt("durationHour", hour)
-            }
-        }
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         if(savedInstanceState?.getBoolean("habitRecordDialogShown") == true){
             habitRecordDialog?.show(parentFragmentManager, "AddHabitRecordDialog")
-            habitRecordDialog?.view?.findViewById<Spinner>(R.id.edit_habit_spinner)?.setSelection(savedInstanceState.getInt("habitPosition"))
-            val timePicker = habitRecordDialog?.view?.findViewById<TimePicker>(R.id.timepicker)
-            timePicker?.minute = savedInstanceState.getInt("durationMinute")
-            timePicker?.hour = savedInstanceState.getInt("durationHour")
         }
         else if(savedInstanceState?.getBoolean("summaryDialogShown") == true){
             summaryDialog?.show(parentFragmentManager, "AddSummaryDialog")
-            summaryDialog?.view?.findViewById<EditText>(R.id.etv_summary)?.setText( savedInstanceState.getString("summary") )
         }
+
     }
+
 
 }

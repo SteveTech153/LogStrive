@@ -49,8 +49,8 @@ class HabitRepository(private val habitDao: HabitDao, private val categoryDao: C
     suspend fun getDailyLog(userId: Int, date: Long): DailyLog?{
         return dailyLogDao.getDailyLog(userId, date)
     }
-    suspend fun clearAllLogsOfUserOn(userId: Int, date: Long){
-        habitLogDao.clearAllLogsOfUserOn(userId, date)
+    suspend fun clearAllHabitLogsOfUserOn(userId: Int, date: Long){
+        habitLogDao.clearAllHabitLogsOfUserOn(userId, date)
     }
 
     fun getAllCategories(): LiveData<List<Category>> = categoryDao.getAllCategories()
@@ -63,14 +63,11 @@ class HabitRepository(private val habitDao: HabitDao, private val categoryDao: C
         return habitLogDao.getHabitLogsForUserOn(userId, date)
     }
 
-    fun getAllHabitsOfUser(userId: Int): LiveData<List<Habit>> {
-        return habitDao.getAllHabitsForUser(userId)
-    }
-
     suspend fun getAllActiveDatesForHabitOf(habitId: Int, userId: Int): List<Long>? {
         return habitLogDao.getAllActiveDatesForHabitOf(habitId, userId)
     }
 
+    //testing purpose
     suspend fun clearAllUserHabitLogs(userId: Int){
         return habitLogDao.clearAllUserHabitLogs(userId)
     }

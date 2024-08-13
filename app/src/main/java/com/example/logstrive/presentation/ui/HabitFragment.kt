@@ -52,22 +52,42 @@ class HabitFragment : Fragment(), AddHabitDialog.AddHabitListener,
             dialog?.show(childFragmentManager, "AddHabitDialog")
 
         }
-
+        binding.tvAddHabitToStartJourney.visibility = View.VISIBLE
         habitViewModel.allHabits.observe(viewLifecycleOwner) { habits ->
-            habits?.let { habitAdapter.setHabits(it) }
+            habits?.let {
+                habitAdapter.setHabits(it)
+                if(it.isNotEmpty()){
+                    binding.tvAddHabitToStartJourney.visibility = View.GONE
+                }
+            }
         }
     }
 
     override fun onHabitAdded(habitName: String, categoryId: Int, callback: (Boolean)-> Unit) {
         val userId = SessionManager.getId(requireContext())
         if (userId != -1) {
-            val habit = Habit(habitName = habitName.lowercase(), categoryId = categoryId, userId = userId)
+            val habit = Habit(habitName = habitName, categoryId = categoryId, userId = userId)
             lifecycleScope.launch {
                 habitViewModel.addHabit(habit){ success ->
                     callback(success)
                 }
             }
         }
+    }
+    override fun onHabitEdited(habit: Habit){
+        lifecycleScope.launch {
+            habitViewModel.updateHabit(habit)
+        }
+    }
+
+    override fun onHabitDeleted(habit: Habit) {
+        lifecycleScope.launch {
+            habitViewModel.deleteHabit(habit)
+        }
+    }
+
+    override fun onItemClick(habit: Habit) {
+        EditHabitDialog.newInstance(habit, this).show(childFragmentManager, "EditHabitDialog")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -82,19 +102,5 @@ class HabitFragment : Fragment(), AddHabitDialog.AddHabitListener,
         }
     }
 
-    override fun onHabitEdited(habit: Habit){
-        lifecycleScope.launch {
-            habitViewModel.updateHabit(habit)
-        }
-    }
 
-    override fun onHabitDeleted(habit: Habit) {
-        lifecycleScope.launch {
-            habitViewModel.deleteHabit(habit)
-        }
-    }
-
-    override fun onItemClick(habit: Habit) {
-        EditHabitDialog.newInstance(habit, this).show(parentFragmentManager, "EditHabitDialog")
-    }
 }

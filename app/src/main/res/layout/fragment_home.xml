@@ -43,7 +43,7 @@
                 android:text="@string/yesterdays_record"
                 android:textColor="@color/ligtcement"
                 android:textSize="20sp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintTop_toBottomOf="@+id/tv_add_records_to_get_started"
                 tools:layout_editor_absoluteX="-1dp" />
 
@@ -164,9 +164,10 @@
                 android:fontFamily="serif-monospace"
                 android:paddingLeft="40dp"
                 android:paddingRight="40dp"
-                android:paddingBottom="90dp"
-                android:text="Add records to start your day"
-                android:visibility="visible"
+                android:paddingBottom="75dp"
+                android:paddingTop="15dp"
+                android:text="@string/add_records_to_start_your_day"
+                android:visibility="gone"
                 android:textColor="@color/darker_gray"
                 android:textSize="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -198,7 +199,7 @@
             android:clickable="true"
             android:visibility="gone"
             android:backgroundTint="@color/purple1"
-            app:layout_constraintBottom_toTopOf="@+id/home_fab"
+            app:layout_constraintBottom_toTopOf="@+id/fab_habit_add"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/baseline_post_add_24" />
 
@@ -211,7 +212,7 @@
             android:clickable="true"
             android:visibility="gone"
             android:backgroundTint="@color/purple1"
-            app:layout_constraintBottom_toTopOf="@+id/fab_summary_add"
+            app:layout_constraintBottom_toTopOf="@+id/home_fab"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/baseline_add_task_24" />
 
@@ -220,7 +221,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
-            android:layout_marginBottom="180dp"
+            android:layout_marginBottom="100dp"
             android:background="@color/black"
             android:padding="10dp"
             android:text="@string/add_habit_record"
@@ -234,7 +235,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="110dp"
+            android:layout_marginBottom="180dp"
             android:background="@color/black"
             android:padding="10dp"
             android:visibility="gone"

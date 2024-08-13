@@ -52,7 +52,7 @@ class SignupFragment : Fragment() {
                 else -> {
                     userViewModel.signup(requireContext(), username, newPassword){ success ->
                         if(success){
-                            Toast.makeText(context, getString(R.string.login_successful), Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, getString(R.string.login_successful), Toast.LENGTH_SHORT).show()
                             val intent = Intent(activity, HomeActivity::class.java)
                             startActivity(intent)
                             activity?.finish()

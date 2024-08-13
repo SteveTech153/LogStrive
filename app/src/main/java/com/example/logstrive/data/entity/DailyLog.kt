@@ -9,7 +9,6 @@ import java.util.Date
 
 @Entity(
     tableName = "daily_log",
-    indices = [Index(value = ["user_id", "date"], unique = true)],
     foreignKeys = [
         ForeignKey(
             entity = User::class,

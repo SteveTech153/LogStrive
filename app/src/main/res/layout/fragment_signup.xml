@@ -5,12 +5,16 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.SignupFragment">
-
+        tools:context=".presentation.ui.SignupFragment"
+        android:background="@drawable/bg2_dark"
+        android:paddingBottom="60dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg2_dark">
+            android:layout_height="wrap_content"
+            >
 
 
             <com.google.android.material.textview.MaterialTextView
@@ -45,7 +49,6 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.515"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_signup" />
 
@@ -115,5 +118,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </FrameLayout>
 </layout>

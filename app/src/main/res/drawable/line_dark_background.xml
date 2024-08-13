@@ -1,7 +1,7 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#51090212" /> <!-- 50% transparent black -->
+            <solid android:color="#51FFFFFF" /> <!-- 50% transparent black -->
             <size android:height="20dp" /> <!-- Height of the line -->
         </shape>
     </item>

@@ -30,12 +30,12 @@ class EmojiAdapter(private val emojis: EnumEntries<Emoji>, private val onEmojiCl
         private val emojiTextView: TextView = itemView.findViewById(R.id.emoji)
 
         init {
-            itemView.setOnClickListener {
+            itemView.setOnClickListener { //changed here
                 val previousPosition = selectedPosition
-                selectedPosition = adapterPosition
+                selectedPosition = bindingAdapterPosition
                 notifyItemChanged(previousPosition)
                 notifyItemChanged(selectedPosition)
-                onEmojiClick(adapterPosition)
+                onEmojiClick(bindingAdapterPosition)
             }
         }
 

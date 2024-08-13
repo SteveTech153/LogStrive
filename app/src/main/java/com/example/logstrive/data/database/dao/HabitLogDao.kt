@@ -23,7 +23,7 @@ interface HabitLogDao {
     suspend fun getHabitLogsForUserOn(userId: Int, date: Long): List<HabitLog>
 
     @Query("DELETE FROM habit_log WHERE user_id = :userId AND date = :date")
-    suspend fun clearAllLogsOfUserOn(userId: Int, date: Long)
+    suspend fun clearAllHabitLogsOfUserOn(userId: Int, date: Long)
 
     @Query("SELECT date FROM habit_log WHERE user_id = :userId AND habit_id = :habitId")
     suspend fun getAllActiveDatesForHabitOf(habitId: Int, userId: Int): List<Long>

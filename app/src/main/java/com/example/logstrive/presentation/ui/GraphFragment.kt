@@ -36,16 +36,20 @@ class GraphFragment : Fragment() {
     ): View {
         binding = FragmentGraphBinding.inflate(inflater)
         habitViewModel.allHabits.observe(viewLifecycleOwner) { habits ->
-            lifecycleScope.launch { //changed here
+            lifecycleScope.launch {
                 val accountCreatedDate = withContext(Dispatchers.IO) {
                     userViewModel.getAccountCreatedDate(SessionManager.getId(requireContext()))
                 }
                 habitViewModel.getGraphItemsForUserForHabitsFrom(habits, accountCreatedDate)
             }
         }
+        binding.tvAddHabitsToStartGraph.visibility = View.VISIBLE
         habitViewModel.graphItems.observe(viewLifecycleOwner){ graphItems ->
             binding.rvGraphItems.adapter = GraphItemAdapter(graphItems)
             binding.rvGraphItems.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            if(graphItems.isNotEmpty()){
+                binding.tvAddHabitsToStartGraph.visibility = View.GONE
+            }
         }
         return binding.root
     }

@@ -71,10 +71,6 @@ class LookbackFragment : Fragment() {
 
         binding.rvHabitRecord.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        val todayDateLong: Calendar = Calendar.getInstance()
-        //updateOnDate(todayDateLong.get(Calendar.YEAR), todayDateLong.get(Calendar.MONTH), todayDateLong.get(Calendar.DAY_OF_MONTH))
-//        binding.calendarView.setDate(Helper.convertDateToLong(Date()))
-
         binding.calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             val calendar = Calendar.getInstance().apply {
                 set(Calendar.YEAR, year)
@@ -143,46 +139,6 @@ class LookbackFragment : Fragment() {
                         updateUI(log, habitCards)
                     }
             }
-        }
-    }
-    private fun updateForToday() {
-        val dateLong = convertDateToLong(Date())
-        lifecycleScope.launch {
-            val userId = SessionManager.getId(requireContext())
-
-            val logDeferred = async(Dispatchers.IO) {
-                habitViewModel.getDailyLog(userId, dateLong)
-            }
-//            val logsDeferred = async(Dispatchers.IO) {
-//                habitViewModel.getHabitLogsForUserOn(userId, dateLong)
-//            }
-            val log = logDeferred.await()
-            var habitCards: List<HabitCardItem>? = null
-            habitViewModel.todaysHabitLogsOfUser.observe(viewLifecycleOwner){ logs ->
-                habitViewModel.allHabits.observe(viewLifecycleOwner) { habits ->
-                    if (habits != null) {
-                        val habitMap = habits.associateBy { it.habitId }
-                        habitCards = logs?.mapNotNull { habitLog ->
-                            val habit = habitMap[habitLog.habitId]
-                            if (habit != null) {
-                                HabitCardItem(
-                                    name = habit.habitName,
-                                    duration = minutesToTimeString(habitLog.duration),
-                                    imageName = "habit_icon_${habit.categoryId}"
-                                )
-                            } else {
-                                null
-                            }
-                        }
-                        updateUI(log, habitCards!!)
-                    }else{
-                        updateUI(log, habitCards)
-                    }
-                }
-            }
-
-
-
         }
     }
     private fun updateUI(dailyLog: DailyLog?, habitCards: List<HabitCardItem>?){

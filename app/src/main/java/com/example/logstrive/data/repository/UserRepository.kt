@@ -21,6 +21,7 @@ class UserRepository(private val userDao: UserDao) {
         return userDao.getAccountCreatedDate(userId)
     }
 
+    //testing purpose
     suspend fun updateUserAccountCreatedDate(userId: Int, newDate: Long){
         userDao.updateUserAccountCreatedDate(userId, newDate)
     }

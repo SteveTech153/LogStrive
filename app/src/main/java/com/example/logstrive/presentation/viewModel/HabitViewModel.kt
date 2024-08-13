@@ -46,7 +46,7 @@ class HabitViewModel(application: Application, private val repository: HabitRepo
 
     fun addHabit(habit: Habit, callback: (Boolean)-> Unit) {
         viewModelScope.launch {
-            if(getAllHabitNames(SessionManager.getId(getApplication())).contains(habit.habitName.lowercase())){
+            if(getAllHabitNames(SessionManager.getId(getApplication())).map { it -> it.lowercase() }.contains(habit.habitName.lowercase())){
                 callback(false)
             }else {
                 repository.insert(habit)
@@ -96,9 +96,9 @@ class HabitViewModel(application: Application, private val repository: HabitRepo
             repository.clearAllHabitsForUser(userId)
         }
     }
-    fun clearAllLogsOfUserOn(userId: Int, date: Long){
+    fun clearAllHabitLogsOfUserOn(userId: Int, date: Long){
         viewModelScope.launch {
-            repository.clearAllLogsOfUserOn(userId, date)
+            repository.clearAllHabitLogsOfUserOn(userId, date)
         }
     }
 
@@ -118,12 +118,6 @@ class HabitViewModel(application: Application, private val repository: HabitRepo
         return repository.getHabitLogsForUserOn(userId, date)
     }
 
-//    private fun getTodaysHabitLogsForUserOn(userId: Int) {
-//        val source = repository.getHabitLogsForUserOnAsLiveData(userId, Helper.convertDateToLong(Date()))
-//        _todaysLogsOfUser.addSource(source) { logs ->
-//            _todaysLogsOfUser.value = logs
-//        }
-//    }
     private fun getTodaysHabitLogsForUserOn(userId: Int): LiveData<List<HabitLog>> {
         return repository.getHabitLogsForUserOnAsLiveData(userId, Helper.convertDateToLong(Date()))
 
@@ -147,7 +141,7 @@ class HabitViewModel(application: Application, private val repository: HabitRepo
         habits.forEach { habit ->
             val activeDates = getAllActiveDatesForHabitOf(habit.habitId, userId) //active days
 
-            val noOfBoxes = if (totalDays > 28) totalDays+1 else 28
+            val noOfBoxes = if (totalDays > 28) (totalDays+1) else 28
             val activeIndexes = activeDates?.map { date ->
                 val index = calculateDaysBetween(accountCreatedDate, date)
                 index
