@@ -9,7 +9,6 @@ import com.example.logstrive.data.entity.HabitLog
 
 @Dao
 interface HabitLogDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(habitLog: HabitLog)
 

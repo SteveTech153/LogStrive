@@ -28,7 +28,7 @@ class SignupFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSignupBinding.inflate(inflater)
+        binding = FragmentSignupBinding.inflate(inflater, container, false)
 
         binding.tvLoginNavigate.setOnClickListener{
             val action = SignupFragmentDirections.actionSignupFragmentToLoginFragment()

@@ -53,4 +53,8 @@
     <string name="bye">Byee!</string>
     <string name="add_records_to_start_your_day">Add records to start your day</string>
     <string name="add_habits_to_start_your_journey">Add habits to start your journey</string>
+    <string name="save">Save</string>
+    <string name="main_fab">main Fab</string>
+    <string name="add_summary_fab">Add summary fab</string>
+    <string name="add_habit_fab">add habit fab</string>
 </resources>

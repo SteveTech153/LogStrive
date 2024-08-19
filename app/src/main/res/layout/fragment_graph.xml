@@ -17,6 +17,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="serif-monospace"
                 android:text="@string/add_habits_to_start_your_journey"
+                android:layout_marginTop="50dp"
                 android:textColor="@color/darker_gray"
                 android:textSize="30sp"
                 android:padding="40dp"
@@ -75,10 +76,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_yourgraph" />
-
-
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

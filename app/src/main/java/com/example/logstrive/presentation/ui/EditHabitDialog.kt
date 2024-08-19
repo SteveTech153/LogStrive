@@ -50,7 +50,7 @@ class EditHabitDialog() : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DialogEditHabitBinding.inflate(LayoutInflater.from(context), null, false)
+        binding = DialogEditHabitBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(requireContext())
 
         // Restore state
@@ -94,12 +94,12 @@ class EditHabitDialog() : DialogFragment() {
             AlertDialog.Builder(requireContext(), R.style.CustomAlertDialogTheme)
                 .setTitle("Confirm Deletion")
                 .setMessage("Are you sure you want to delete this item?")
-                .setPositiveButton("Yes") { dialog, _ ->
+                .setPositiveButton("Yes") { dialog, _id ->
                     habit?.let { listener?.onHabitDeleted(habit!!) }
                     dialog.dismiss()
                     super.dismiss()
                 }
-                .setNegativeButton("Cancel") { dialog, _ ->
+                .setNegativeButton("Cancel") { dialog, _id ->
                     dialog.dismiss()
                 }
                 .show()
@@ -109,8 +109,8 @@ class EditHabitDialog() : DialogFragment() {
             val newHabitName = binding.editHabitName.text.toString()
             val selectedCategoryName = binding.editHabitCategorySpinner.selectedItem as String
             val selectedCategoryId = categoriesList.firstOrNull { it?.categoryName == selectedCategoryName }?.categoryId
-            println("${getString(R.string.selected_category_id)} ${selectedCategoryId}, ${getString(R.string.category_name)} ${selectedCategoryName}")
-            println(categoriesList)
+//            println("${getString(R.string.selected_category_id)} ${selectedCategoryId}, ${getString(R.string.category_name)} ${selectedCategoryName}")
+//            println(categoriesList)
             if (newHabitName.isNotEmpty() && selectedCategoryId != null) {
                 val updatedHabit = habit?.copy(habitName = newHabitName, categoryId = selectedCategoryId)
                 updatedHabit?.let {  listener?.onHabitEdited(updatedHabit) }
@@ -141,7 +141,7 @@ class EditHabitDialog() : DialogFragment() {
         savedInstanceState?.getInt("habitCategoryPositionSelected")?.let { position ->
             binding.editHabitCategorySpinner.post {
                 binding.editHabitCategorySpinner.setSelection(position)
-                println("setting spinner. position : $position")
+//                println("setting spinner. position : $position")
             }
         }
     }

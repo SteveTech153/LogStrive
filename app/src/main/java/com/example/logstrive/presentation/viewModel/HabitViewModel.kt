@@ -145,7 +145,7 @@ class HabitViewModel(application: Application, private val repository: HabitRepo
             val activeIndexes = activeDates?.map { date ->
                 val index = calculateDaysBetween(accountCreatedDate, date)
                 index
-            }?.filter { it < noOfBoxes }
+            }
 
             val startYearMonth = dateFormat.format(Date(accountCreatedDate))
             val endYearMonth = dateFormat.format(Date(today))
@@ -166,7 +166,6 @@ class HabitViewModel(application: Application, private val repository: HabitRepo
      private suspend fun getAllActiveDatesForHabitOf(habitId: Int, userId: Int): List<Long>? {
         return repository.getAllActiveDatesForHabitOf(habitId, userId)
     }
-
 }
 
 class HabitViewModelFactory(
@@ -181,4 +180,3 @@ class HabitViewModelFactory(
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }
-

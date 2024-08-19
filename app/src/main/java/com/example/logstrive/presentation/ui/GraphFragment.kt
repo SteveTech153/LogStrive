@@ -34,7 +34,7 @@ class GraphFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentGraphBinding.inflate(inflater)
+        binding = FragmentGraphBinding.inflate(inflater, container, false)
         habitViewModel.allHabits.observe(viewLifecycleOwner) { habits ->
             lifecycleScope.launch {
                 val accountCreatedDate = withContext(Dispatchers.IO) {

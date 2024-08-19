@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "habit",
-    indices = [Index(value = ["user_id", "habit_name", "category_id"])],
+    indices = [Index(value = ["user_id"])],
     foreignKeys = [
         ForeignKey(
             entity = User::class,

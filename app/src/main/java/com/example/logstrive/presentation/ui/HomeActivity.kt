@@ -17,15 +17,15 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var bottomNavigationView: BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_home)
+        enableEdgeToEdge()
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.my_home_nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
 
-        bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-//        bottomNavigationView.setupWithNavController(navController)
+        bottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNavigationView.selectedItemId = R.id.nav_home
 
         bottomNavigationView.setOnItemSelectedListener {
@@ -57,12 +57,6 @@ class HomeActivity : AppCompatActivity() {
                 }
             }
             true
-        }
-    }
-    private fun setCurrFragment(fragment : Fragment){
-        supportFragmentManager.beginTransaction().apply {
-            replace(R.id.my_home_nav_host_fragment,fragment)
-            commit()
         }
     }
 
@@ -97,14 +91,20 @@ class HomeActivity : AppCompatActivity() {
 
 
 
-    fun updateSelectedItemIdInBottomNavigationView(nameOfTheFragment: String){
-        when(nameOfTheFragment){
-            NavigationConstants.HOME ->  bottomNavigationView.selectedItemId = R.id.nav_home
-            NavigationConstants.HABITS -> bottomNavigationView.selectedItemId = R.id.nav_habits
-            NavigationConstants.PROFILE -> bottomNavigationView.selectedItemId = R.id.nav_profile
-            NavigationConstants.GRAPH -> bottomNavigationView.selectedItemId = R.id.nav_graph
-            NavigationConstants.PROGRESS -> bottomNavigationView.selectedItemId = R.id.nav_lookback
-            else -> bottomNavigationView.selectedItemId = R.id.nav_home
-        }
-    }
+//    fun updateSelectedItemIdInBottomNavigationView(nameOfTheFragment: String){
+//        when(nameOfTheFragment){
+//            NavigationConstants.HOME ->  bottomNavigationView.selectedItemId = R.id.nav_home
+//            NavigationConstants.HABITS -> bottomNavigationView.selectedItemId = R.id.nav_habits
+//            NavigationConstants.PROFILE -> bottomNavigationView.selectedItemId = R.id.nav_profile
+//            NavigationConstants.GRAPH -> bottomNavigationView.selectedItemId = R.id.nav_graph
+//            NavigationConstants.PROGRESS -> bottomNavigationView.selectedItemId = R.id.nav_lookback
+//            else -> bottomNavigationView.selectedItemId = R.id.nav_home
+//        }
+//    }
+//    private fun setCurrFragment(fragment : Fragment){
+//        supportFragmentManager.beginTransaction().apply {
+//            replace(R.id.my_home_nav_host_fragment,fragment)
+//            commit()
+//        }
+//    }
 }

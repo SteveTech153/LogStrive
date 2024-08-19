@@ -32,7 +32,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentProfileBinding.inflate(inflater)
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
         val newUsernameEtv = binding.etvUsername
         newUsernameEtv.setText( SessionManager.getUsername(requireContext()) )
         binding.editBtn.setOnClickListener {

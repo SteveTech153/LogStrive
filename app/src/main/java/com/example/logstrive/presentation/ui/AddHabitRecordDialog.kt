@@ -3,6 +3,7 @@ package com.example.logstrive.presentation.ui
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AlertDialog
@@ -47,15 +48,10 @@ class AddHabitRecordDialog: DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DialogAddHabitRecordBinding.inflate(layoutInflater, null, false)
+        binding = DialogAddHabitRecordBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(requireContext())
-        binding.editHabitSpinner.post {
-            binding.editHabitSpinner.setSelection( savedInstanceState?.getInt("habitPosition")?:0 )
-        }
         binding.timepicker.setIs24HourView(true)
-        binding.timepicker.hour = savedInstanceState?.getInt("selectedHour", 0) ?: 0
-        binding.timepicker.minute = savedInstanceState?.getInt("selectedMinute", 10) ?: 10
-
+        onViewStateRestored(savedInstanceState)
         habitViewModel.allHabits.observe(this) { habits ->
             val adapter = ArrayAdapter(
                 requireContext(),
@@ -111,5 +107,4 @@ class AddHabitRecordDialog: DialogFragment() {
         binding.timepicker.hour = savedInstanceState?.getInt("selectedHour", 0) ?: 0
         binding.timepicker.minute = savedInstanceState?.getInt("selectedMinute", 10) ?: 10
     }
-
 }

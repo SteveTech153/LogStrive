@@ -9,11 +9,6 @@ import com.example.logstrive.databinding.YesterdayHabitCardWithTimeLayoutBinding
 
 class YesterdayHabitCardAdapter(private var habitCardItems: List<HabitCardItem>) : RecyclerView.Adapter<YesterdayHabitCardAdapter.YesterdayHabitCardViewHolder>() {
 
-    fun setList(list: List<HabitCardItem>) {
-        this.habitCardItems = list
-        notifyDataSetChanged()
-    }
-
     class YesterdayHabitCardViewHolder(val binding: YesterdayHabitCardWithTimeLayoutBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YesterdayHabitCardViewHolder {

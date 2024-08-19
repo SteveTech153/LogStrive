@@ -52,7 +52,7 @@ class AddHabitDialog : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DialogAddHabitBinding.inflate(LayoutInflater.from(context), null, false)
+        binding = DialogAddHabitBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(requireContext())
 
         habitNameEntered = savedInstanceState?.getString("habitName")
@@ -75,7 +75,7 @@ class AddHabitDialog : DialogFragment() {
             val habitName = habitNameEditText.text.toString()
             var selectedCategory: Category? = null
             categorySpinner.selectedItem?.let { selectedCategory = categorySpinner.selectedItem as Category }
-            if (habitName.isNotEmpty() && selectedCategory != null) {
+            if (habitName.isNotBlank() && selectedCategory != null) {
                 listener!!.onHabitAdded(habitName, selectedCategory!!.categoryId) { success ->
                     if (success) {
                         dismiss()
@@ -103,7 +103,7 @@ class AddHabitDialog : DialogFragment() {
         habitCategoryPositionSelected = binding.habitCategorySpinner.selectedItemPosition
         outState.putString("habitName", habitNameEntered)
         outState.putInt("habitCategoryPositionSelected", habitCategoryPositionSelected!!)
-        println("onSaveInstance spinner. position : $habitCategoryPositionSelected")
+//        println("onSaveInstance spinner. position : $habitCategoryPositionSelected")
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
@@ -112,7 +112,7 @@ class AddHabitDialog : DialogFragment() {
         savedInstanceState?.getInt("habitCategoryPositionSelected")?.let { position ->
             binding.habitCategorySpinner.post {
                 binding.habitCategorySpinner.setSelection(position)
-                println("setting spinner. position : $position")
+//                println("setting spinner. position : $position")
             }
         }
     }

@@ -98,7 +98,7 @@ class HabitFragment : Fragment(), AddHabitDialog.AddHabitListener,
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
         if(savedInstanceState?.getBoolean("isDialogOpen") == true){
-            dialog?.show(parentFragmentManager, "AddHabitDialog")
+            dialog?.show(childFragmentManager, "AddHabitDialog")
         }
     }
 

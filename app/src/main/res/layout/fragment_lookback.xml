@@ -4,8 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="771dp"
+        android:layout_height="wrap_content"
         android:background="@color/darkblue2"
         tools:context=".presentation.ui.HabitFragment">
 
@@ -74,10 +75,11 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_summary"
                     android:layout_width="286dp"
-                    android:layout_height="94dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:background="@drawable/textview_border"
                     android:padding="10dp"
+                    android:minHeight="120dp"
                     android:text=""
                     android:textColor="@color/ligtcement"
                     android:textSize="16sp"
@@ -129,10 +131,21 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_overallmood"
                     app:layout_constraintVertical_bias="0.0" />
 
+                <Button
+                    android:id="@+id/invisible_btn"
+                    android:layout_width="15dp"
+                    android:layout_height="33dp"
+                    android:layout_marginTop="160dp"
+                    android:text="Button"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calendar_view" />
+
 
                 <!--    </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
             </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
     </FrameLayout>
 </layout>

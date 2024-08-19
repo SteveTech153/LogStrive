@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLoginBinding.inflate(inflater)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
 
         binding.tvSingupNavigate.setOnClickListener{
             val action = LoginFragmentDirections.actionLoginFragmentToSignupFragment()

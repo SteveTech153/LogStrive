@@ -50,7 +50,7 @@ class LookbackFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentLookbackBinding.inflate(inflater)
+        binding = FragmentLookbackBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -166,7 +166,7 @@ class LookbackFragment : Fragment() {
                 binding.tvOverallmood.visibility = View.GONE
                 binding.tvEmoji.visibility = View.GONE
                 binding.rvHabitRecord.visibility = View.GONE
-                Snackbar.make(binding.root, getString(R.string.no_entries), Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, getString(R.string.no_entries), Snackbar.LENGTH_SHORT).setAnchorView(binding.invisibleBtn).show()
             }
         }
 

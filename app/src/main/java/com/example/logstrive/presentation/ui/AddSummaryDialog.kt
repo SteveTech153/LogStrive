@@ -45,7 +45,7 @@ class AddSummaryDialog : DialogFragment() {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        binding = DialogAddSummaryBinding.inflate(layoutInflater, null, false)
+        binding = DialogAddSummaryBinding.inflate(layoutInflater)
         val builder = AlertDialog.Builder(requireContext())
 
         savedInstanceState?.getString("summary")?.let { binding.etvSummary.setText(it) }
@@ -97,7 +97,6 @@ class AddSummaryDialog : DialogFragment() {
         savedInstanceState?.getString("summary")?.let {
             binding.etvSummary.setText(it)
         }
-        println("restore being called ")
         savedInstanceState?.getInt("emojiSelectedPosition")?.let { restoredPosition ->
             selectedPosition = restoredPosition
             adapter?.selectedPosition = restoredPosition

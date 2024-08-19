@@ -31,7 +31,6 @@ class HeatmapView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         textSize = 40f
     }
 
-
     fun setHeatmapData(numberOfBoxes: Int, greenPositions: List<Int>, startMonthYear: String, endMonthYear: String) {
         this.numberOfBoxes = numberOfBoxes
         this.greenPositions = greenPositions
@@ -49,12 +48,9 @@ class HeatmapView(context: Context, attrs: AttributeSet) : View(context, attrs) 
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-
         canvas.drawText(startMonthYear, 0f, 40f, textPaint)
-
         val textWidth = textPaint.measureText(endMonthYear)
         canvas.drawText(endMonthYear, width - textWidth, 40f, textPaint)
-
         for (i in 0 until numberOfBoxes) {
             val paint = if (i in greenPositions) greenPaint else grayPaint
             val row = i % 7

@@ -57,7 +57,7 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -197,7 +197,7 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
                     binding.root,
                     getString(R.string.please_add_habit),
                     Snackbar.LENGTH_LONG
-                ).setTextMaxLines(5).show()
+                ).setTextMaxLines(5).setAnchorView(binding.homeFab).show()
                 lifecycleScope.launch {
                     delay(1500)
                     (activity as? HomeActivity)?.navigateTo(NavigationConstants.HABITS)
@@ -228,9 +228,9 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
         lifecycleScope.launch {
             if (habitViewModel.getDailyLog(SessionManager.getId(requireContext()), Helper.convertDateToLong(Date())) == null) {
                 habitViewModel.insertDailyLog(dailyLog)
-                Snackbar.make(requireView(), getString(R.string.summary_added), Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(requireView(), getString(R.string.summary_added), Snackbar.LENGTH_SHORT).setAnchorView(binding.homeFab).show()
             } else {
-                Snackbar.make(requireView(), getString(R.string.summary_already_added), Snackbar.LENGTH_LONG).show()
+                Snackbar.make(requireView(), getString(R.string.summary_already_added), Snackbar.LENGTH_LONG).setAnchorView(binding.homeFab).show()
             }
         }
     }
@@ -249,8 +249,5 @@ class HomeFragment : Fragment(), AddHabitRecordDialog.AddHabitRecordListener, Ad
         else if(savedInstanceState?.getBoolean("summaryDialogShown") == true){
             summaryDialog?.show(parentFragmentManager, "AddSummaryDialog")
         }
-
     }
-
-
 }
